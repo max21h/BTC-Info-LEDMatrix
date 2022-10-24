@@ -34,7 +34,7 @@ Show CKPool Infos or BTC Price on LED Matrix Modul
     3. mode (look at "Run Modes")
     
      Run Modes
-      -1 or empty: Complete JSON line by line
+      no set: Complete JSON line by line
       0: first line of JSON in a loop
       1: second line of JSON in a loop
       2: third line of JSON in a loop
