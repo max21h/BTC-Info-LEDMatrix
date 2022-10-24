@@ -53,5 +53,6 @@ Show CKPool Infos or BTC Price on LED Matrix Modul
       nohup python3 btcInfo.py [brightness as integer] &
 
 
-Donate to:
+  
+## Donate
 <img width="573" alt="image" src="https://user-images.githubusercontent.com/116381805/197489090-9f5e78f4-6c32-43b0-b544-67ccea1c12f3.png">
