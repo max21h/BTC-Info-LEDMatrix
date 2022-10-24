@@ -31,21 +31,27 @@ Show CKPool Infos or BTC Price on LED Matrix Modul
     cd btcinfoLedMatrix
     
    ## Parameters
-    1. URL for example: https://solo.ckpool.org/users/bc1...
-    2. mode (look at "Run Modes")
-    3. Brightness of LED Matriy
+    1. Brightness of LED Matrix
+    2. URL for example: https://solo.ckpool.org/users/bc1...
+    3. mode (look at "Run Modes")
     
      Run Modes
       -1 or empty: Complete JSON line by line
-      0: first line of JSON
-      1: second line of JSON
-      2: third line of JSON
+      0: first line of JSON in a loop
+      1: second line of JSON in a loop
+      2: third line of JSON in a loop
       3: ...and so on
       
-   ## Start Script
+   ## Start Script (ckpool Info)
     Option 1 (Direct):
-      python3 btcInfo.py [https://solo.ckpool.org/users/bc1...] [mode as integer] [brightness as integer]
+      python3 btcInfo.py [brightness as integer][https://solo.ckpool.org/users/bc1...] [mode as integer]
     Option 2 (Background):
-      nohup python3 jsonToLEDMatrix.py [https://solo.ckpool.org/users/bc1...] [brightness as integer] [brightness as integer] &
+      nohup python3 btcInfo.py [brightness as integer] [https://solo.ckpool.org/users/bc1...] [brightness as integer] &
+  
+   ## Start Script (BTC/USDT Price from Binance API)
+    Option 1 (Direct):
+      python3 btcInfo.py [brightness as integer]
+    Option 2 (Background):
+      nohup python3 btcInfo.py [brightness as integer] &
       
       
