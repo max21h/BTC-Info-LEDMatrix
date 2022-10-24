@@ -26,7 +26,7 @@ Show CKPool Infos or BTC Price on LED Matrix Modul
   7. Reboot
   
   ## GIT clone BTC-Info-LEDMatrix
-    git clone https://github.com/BTC-Info-LEDMatrix/btcInfo.git
+    git clone https://github.com/max21h/BTC-Info-LEDMatrix.git
     
    ## Parameters
     1. Brightness of LED Matrix
