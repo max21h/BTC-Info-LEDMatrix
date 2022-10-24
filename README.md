@@ -25,10 +25,8 @@ Show CKPool Infos or BTC Price on LED Matrix Modul
   6. Use the right arrow to select the <Finish> button 
   7. Reboot
   
-  ## Download BTC-Info-LEDMatrix
-    mkdir -p btcinfoLedMatrix; cd btcinfoLedMatrix 
+  ## GIT clone BTC-Info-LEDMatrix
     git clone https://github.com/BTC-Info-LEDMatrix/btcInfo.git
-    cd btcinfoLedMatrix
     
    ## Parameters
     1. Brightness of LED Matrix
@@ -42,16 +40,14 @@ Show CKPool Infos or BTC Price on LED Matrix Modul
       2: third line of JSON in a loop
       3: ...and so on
       
-   ## Start Script (ckpool Info)
+   ## Start Script (e.g. solo.ckpool info)
     Option 1 (Direct):
       python3 btcInfo.py [brightness as integer][https://solo.ckpool.org/users/bc1...] [mode as integer]
     Option 2 (Background):
-      nohup python3 btcInfo.py [brightness as integer] [https://solo.ckpool.org/users/bc1...] [brightness as integer] &
+      nohup python3 btcInfo.py [brightness as integer] [https://solo.ckpool.org/users/bc1...] [mode as integer] &
   
    ## Start Script (BTC/USDT Price from Binance API)
     Option 1 (Direct):
       python3 btcInfo.py [brightness as integer]
     Option 2 (Background):
       nohup python3 btcInfo.py [brightness as integer] &
-      
-      
