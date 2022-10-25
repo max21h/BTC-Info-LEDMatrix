@@ -16,39 +16,44 @@ from luma.core.legacy.font import proportional, CP437_FONT, TINY_FONT, SINCLAIR_
 import json
 # SYS
 import sys
+#datetime
+import datetime
+
+disp = []
+second = 0
+serial = spi(port=0, device=0, gpio=noop())
+device = max7219(serial, cascaded=4 , block_orientation=-90, rotate=2)
+if len(sys.argv) > 1:
+    device.contrast(int(sys.argv[1])) #set brightness
 
 while(1):
-    disp = []
     a = -1
     url = ""
 
-    if len(sys.argv) > 2:
-        ##Read JSON from URL
-        url = sys.argv[2]
-        page = requests.get(url)
-        y = page.json()
+    if(second != datetime.datetime.now().second):
+        second = datetime.datetime.now().second
+        if len(sys.argv) > 2:
+            ##Read JSON from URL
+            url = sys.argv[2]
+            page = requests.get(url)
+            y = page.json()
 
-        if len(sys.argv) > 3: 
-            a = int(sys.argv[3])
+            if len(sys.argv) > 3: 
+                a = int(sys.argv[3])
 
-        for key in y.keys():
-            disp.append("{}: {} ".format(key, y[key]))
-    else:
-        #Get BTCUSDT Price from Binance
-        url = "https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT"
-        data = requests.get(url)  
-        data = data.json()
-        disp.append(f"{data['symbol']} {round(float(data['price']), 2)}")
+            for key in y.keys():
+                disp.append("{}: {} ".format(key, y[key]))
+        else:
+            #Get BTCUSDT Price from Binance
+            url = "https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT"
+            data = requests.get(url)  
+            data = data.json()
+            disp.append(f"{data['symbol']} {round(float(data['price']), 2)}")
 
-    if url == "":
-        disp.append("No URL given")
+        if url == "":
+            disp.append("No URL given")
 
     disp = list(filter(lambda a:a != 0, disp)) #For some reason every odd element of the list 'disp' is '0'. This removes all occurences of '0' from the list 'disp'
-
-    serial = spi(port=0, device=0, gpio=noop())
-    device = max7219(serial, cascaded=4 , block_orientation=-90, rotate=2)
-    if len(sys.argv) > 1:
-        device.contrast(int(sys.argv[1])) #set brightness
 
     if(a >= 0):
         show_message(device, disp[a], fill="white", font=proportional(TINY_FONT),scroll_delay = 0.04) #Change the value of 'scroll_delay' to change the Scrolling Speed
