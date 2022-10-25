@@ -3,7 +3,7 @@ Show CKPool Infos or BTC Price on LED Matrix Modul
 
 ## Requirements
   - Raspberry PI
-  - LED Matrix Modul (e.g. https://www.amazon.de/dp/B079HVW652/)
+  - [LED Matrix Modul](https://www.amazon.de/dp/B079HVW652/)
   
  ## Software Requirements
   ### Update Raspbian
