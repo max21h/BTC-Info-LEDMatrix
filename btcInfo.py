@@ -32,6 +32,7 @@ while(1):
 
     if(second != datetime.datetime.now().second):
         second = datetime.datetime.now().second
+        disp = []
         if len(sys.argv) > 2:
             ##Read JSON from URL
             url = sys.argv[2]
