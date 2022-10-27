@@ -29,30 +29,34 @@ if len(sys.argv) > 1:
 while(1):
     a = -1
     url = ""
+    
+    try:
+        if(second != datetime.datetime.now().second):
+            second = datetime.datetime.now().second
+            disp = []
+            if len(sys.argv) > 2:
+                ##Read JSON from URL
+                url = sys.argv[2]
+                page = requests.get(url)
+                y = page.json()
 
-    if(second != datetime.datetime.now().second):
-        second = datetime.datetime.now().second
+                if len(sys.argv) > 3: 
+                    a = int(sys.argv[3])
+
+                for key in y.keys():
+                    disp.append("{}: {} ".format(key, y[key]))
+            else:
+                #Get BTCUSDT Price from Binance
+                url = "https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT"
+                data = requests.get(url)  
+                data = data.json()
+                disp.append(f"{data['symbol']} {round(float(data['price']), 2)}")
+
+            if url == "":
+                disp.append("No URL given")
+    except:
         disp = []
-        if len(sys.argv) > 2:
-            ##Read JSON from URL
-            url = sys.argv[2]
-            page = requests.get(url)
-            y = page.json()
-
-            if len(sys.argv) > 3: 
-                a = int(sys.argv[3])
-
-            for key in y.keys():
-                disp.append("{}: {} ".format(key, y[key]))
-        else:
-            #Get BTCUSDT Price from Binance
-            url = "https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT"
-            data = requests.get(url)  
-            data = data.json()
-            disp.append(f"{data['symbol']} {round(float(data['price']), 2)}")
-
-        if url == "":
-            disp.append("No URL given")
+        disp.append("An exception occurred")
 
     disp = list(filter(lambda a:a != 0, disp)) #For some reason every odd element of the list 'disp' is '0'. This removes all occurences of '0' from the list 'disp'
 
